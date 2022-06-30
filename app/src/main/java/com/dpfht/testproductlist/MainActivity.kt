@@ -1,7 +1,8 @@
 package com.dpfht.testproductlist
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityMainBinding.inflate(layoutInflater)
+    setToolbar()
     setContentView(binding.root)
 
     val navHostFragment =
@@ -25,5 +27,21 @@ class MainActivity : AppCompatActivity() {
 
   override fun onSupportNavigateUp(): Boolean {
     return navController.navigateUp() || super.onSupportNavigateUp()
+  }
+
+  private fun setToolbar() {
+    setSupportActionBar(binding.toolbar)
+
+    when (baseContext.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+      Configuration.UI_MODE_NIGHT_YES -> {
+        binding.toolbar.setTitleTextColor(0xFFFFFFFF.toInt())
+      }
+      Configuration.UI_MODE_NIGHT_NO -> {
+        binding.toolbar.setTitleTextColor(0xFFFF0000.toInt())
+      }
+      Configuration.UI_MODE_NIGHT_UNDEFINED -> {
+        binding.toolbar.setTitleTextColor(0xFFFFFFFF.toInt())
+      }
+    }
   }
 }

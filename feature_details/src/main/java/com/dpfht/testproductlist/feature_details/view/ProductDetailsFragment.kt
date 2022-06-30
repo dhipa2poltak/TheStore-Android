@@ -31,7 +31,12 @@ class ProductDetailsFragment : Fragment() {
       val desc = it.getString("desc")
       val image = it.getString("image")
 
-      setToolbar(title ?: "")
+      val isTablet = requireContext().resources.getBoolean(com.dpfht.testproductlist.framework.R.bool.isTablet)
+      if (isTablet) {
+        setToolbar("Order Barang")
+      } else {
+        setToolbar(title ?: "")
+      }
 
       binding.tvTitle.text = title
       binding.tvPrice.text = price
