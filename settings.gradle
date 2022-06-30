@@ -1,0 +1,21 @@
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    google()
+    mavenCentral()
+  }
+}
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+  }
+}
+rootProject.name = "TestProductList"
+include ':app'
+include ':feature_list'
+include ':feature_details'
+include ':framework'
+include ':data'
+include ':domain'

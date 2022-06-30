@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/details_nav_graph"
+    app:startDestination="@id/productDetailsFragment">
+
+  <fragment
+      android:id="@id/productDetailsFragment"
+      android:name="com.dpfht.testproductlist.feature_details.view.ProductDetailsFragment"
+      android:label="judul"
+      tools:layout="@layout/fragment_product_details">
+
+    <deepLink
+        app:uri="android-app://testproduct.dpfht.com/details_fragment?title={title}&amp;price={price}&amp;desc={desc}&amp;image={image}" />
+
+    <argument
+        android:name="title"
+        app:argType="string"/>
+
+    <argument
+        android:name="price"
+        app:argType="string"/>
+
+    <argument
+        android:name="desc"
+        app:argType="string"/>
+
+    <argument
+        android:name="image"
+        app:argType="string"/>
+  </fragment>
+
+</navigation>
