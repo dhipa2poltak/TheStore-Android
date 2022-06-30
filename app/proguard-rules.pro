@@ -27,8 +27,7 @@
 
 # Application classes that will be serialized/deserialized over Gson
 -keep class com.google.gson.examples.android.model.** { <fields>; }
--keep class com.dpfht.testproductlist.data.model.remote.**
-#-keep class com.dpfht.testproductlist.**
+-keep class com.dpfht.thestore.data.model.remote.**
 
 # Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
 # JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)

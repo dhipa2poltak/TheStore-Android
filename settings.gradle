@@ -12,10 +12,10 @@ dependencyResolutionManagement {
     mavenCentral()
   }
 }
-rootProject.name = "TestProductList"
+rootProject.name = "TheStore"
 include ':app'
-include ':feature_list'
-include ':feature_details'
+include ':features:feature_list'
+include ':features:feature_details'
 include ':framework'
 include ':data'
 include ':domain'
