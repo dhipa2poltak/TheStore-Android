@@ -1,4 +1,4 @@
-# TheStore
+# TheStore-Android
 
 **Technology Stack:**
 - Kotlin Programming Language
