@@ -105,7 +105,7 @@ class ProductListFragment : Fragment() {
       }
     }
 
-    viewModel.isShowDialogLoading.observe(requireActivity()) { isLoading ->
+    viewModel.isShowDialogLoading.observe(viewLifecycleOwner) { isLoading ->
       if (isLoading) {
         prgDialog.show()
       } else {
@@ -113,7 +113,7 @@ class ProductListFragment : Fragment() {
       }
     }
 
-    viewModel.banner.observe(requireActivity()) { banner ->
+    viewModel.banner.observe(viewLifecycleOwner) { banner ->
       if (banner.isNotEmpty()) {
         Picasso.get().load(banner)
           .error(android.R.drawable.ic_menu_close_clear_cancel)
@@ -122,19 +122,19 @@ class ProductListFragment : Fragment() {
       }
     }
 
-    viewModel.notifyItemInserted.observe(requireActivity()) { position ->
+    viewModel.notifyItemInserted.observe(viewLifecycleOwner) { position ->
       if (position > 0) {
         adapter.notifyItemInserted(position)
       }
     }
 
-    viewModel.toastMessage.observe(requireActivity()) { msg ->
+    viewModel.toastMessage.observe(viewLifecycleOwner) { msg ->
       if (msg.isNotEmpty()) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
       }
     }
 
-    viewModel.errorMessage.observe(requireActivity()) { msg ->
+    viewModel.errorMessage.observe(viewLifecycleOwner) { msg ->
       if (msg.isNotEmpty()) {
         showErrorMessage(msg)
       }
