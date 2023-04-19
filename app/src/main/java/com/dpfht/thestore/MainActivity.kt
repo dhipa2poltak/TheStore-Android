@@ -1,5 +1,9 @@
 package com.dpfht.thestore
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.dpfht.thestore.R.id
 import com.dpfht.thestore.databinding.ActivityMainBinding
+import com.dpfht.thestore.framework.BroadcastConstants
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,5 +49,24 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.setTitleTextColor(0xFFFFFFFF.toInt())
       }
     }
+  }
+
+  val enterHomeReceiver = object : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+      val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+      navGraph.setStartDestination(com.dpfht.thestore.framework.R.id.list_nav_graph)
+
+      navController.graph = navGraph
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    registerReceiver(enterHomeReceiver, IntentFilter(BroadcastConstants.BROADCAST_ENTER_HOME))
+  }
+
+  override fun onPause() {
+    super.onPause()
+    unregisterReceiver(enterHomeReceiver)
   }
 }

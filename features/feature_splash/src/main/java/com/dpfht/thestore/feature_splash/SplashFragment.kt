@@ -1,5 +1,6 @@
-package com.dpfht.thestore
+package com.dpfht.thestore.feature_splash
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -7,9 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
-import com.dpfht.thestore.R.navigation
-import com.dpfht.thestore.databinding.FragmentSplashBinding
+import com.dpfht.thestore.feature_splash.databinding.FragmentSplashBinding
+import com.dpfht.thestore.framework.BroadcastConstants
 
 class SplashFragment : Fragment() {
 
@@ -32,9 +32,6 @@ class SplashFragment : Fragment() {
   }
 
   private fun navigateToNextScreen() {
-    val navGraph = Navigation.findNavController(requireView()).navInflater.inflate(navigation.nav_graph)
-    navGraph.setStartDestination(com.dpfht.thestore.framework.R.id.list_nav_graph)
-
-    Navigation.findNavController(requireView()).graph = navGraph
+    requireContext().sendBroadcast(Intent(BroadcastConstants.BROADCAST_ENTER_HOME))
   }
 }

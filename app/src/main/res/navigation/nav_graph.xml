@@ -10,7 +10,7 @@
 
   <fragment
       android:id="@+id/splashFragment"
-      android:name="com.dpfht.thestore.SplashFragment"
+      android:name="com.dpfht.thestore.feature_splash.SplashFragment"
       android:label="Splash"
       tools:layout="@layout/fragment_splash">
 

@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TheStore"
 include ':app'
+include ':features:feature_splash'
 include ':features:feature_list'
 include ':features:feature_details'
 include ':framework'
