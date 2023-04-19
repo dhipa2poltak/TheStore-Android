@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
       supportFragmentManager.findFragmentById(id.my_nav_host_fragment) as NavHostFragment
     navController = navHostFragment.navController
     NavigationUI.setupActionBarWithNavController(this, navController)
+
+    registerReceiver(enterHomeReceiver, IntentFilter(BroadcastConstants.BROADCAST_ENTER_HOME))
   }
 
   override fun onSupportNavigateUp(): Boolean {
@@ -53,6 +55,8 @@ class MainActivity : AppCompatActivity() {
 
   val enterHomeReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
+      unregisterReceiver(this)
+
       val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
       navGraph.setStartDestination(com.dpfht.thestore.framework.R.id.list_nav_graph)
 
@@ -60,13 +64,13 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  override fun onResume() {
-    super.onResume()
-    registerReceiver(enterHomeReceiver, IntentFilter(BroadcastConstants.BROADCAST_ENTER_HOME))
-  }
+  override fun onDestroy() {
+    super.onDestroy()
 
-  override fun onPause() {
-    super.onPause()
-    unregisterReceiver(enterHomeReceiver)
+    try {
+      unregisterReceiver(enterHomeReceiver)
+    } catch (e: Exception) {
+      //--ignore
+    }
   }
 }
