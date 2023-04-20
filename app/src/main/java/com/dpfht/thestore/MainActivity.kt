@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() {
   val enterHomeReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
       unregisterReceiver(this)
-      binding.toolbar.visibility = View.VISIBLE
 
       val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
       navGraph.setStartDestination(com.dpfht.thestore.framework.R.id.list_nav_graph)
