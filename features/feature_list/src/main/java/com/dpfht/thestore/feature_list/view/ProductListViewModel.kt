@@ -5,12 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavDeepLinkRequest
-import com.dpfht.thestore.data.model.remote.DataResponse
-import com.dpfht.thestore.data.model.remote.Product
+import com.dpfht.thestore.domain.entity.DataDomain
+import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
-import com.dpfht.thestore.ext.toRupiahString
-import com.dpfht.thestore.framework.rest.api.CallbackWrapper
-import com.dpfht.thestore.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.core.api.rest.CallbackWrapper
+import com.dpfht.thestore.framework.ext.toRupiahString
+import com.dpfht.thestore.framework.util.net.OnlineChecker
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 class ProductListViewModel constructor(
   private val getProdutsUseCase: GetProductsUseCase,
   private val compositeDisposable: CompositeDisposable,
-  private val products: ArrayList<Product>,
+  private val products: ArrayList<ProductEntity>,
   private val onlineChecker: OnlineChecker
 ): ViewModel() {
 
@@ -51,10 +51,11 @@ class ProductListViewModel constructor(
     mIsShowDialogLoading.value = true
 
     val subs = getProdutsUseCase()
+      .map { it }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribeWith(object : CallbackWrapper<DataResponse>() {
-        override fun onSuccessCall(result: DataResponse) {
+      .subscribeWith(object : CallbackWrapper<DataDomain>() {
+        override fun onSuccessCall(result: DataDomain) {
           onSuccess(
             result.data?.banner ?: "",
             ArrayList( result.data?.products ?: arrayListOf())
@@ -69,7 +70,7 @@ class ProductListViewModel constructor(
     compositeDisposable.add(subs)
   }
 
-  private fun onSuccess(banner: String, products: ArrayList<Product>) {
+  private fun onSuccess(banner: String, products: ArrayList<ProductEntity>) {
     if (banner.isNotEmpty()) {
       _banner.value = banner
     }

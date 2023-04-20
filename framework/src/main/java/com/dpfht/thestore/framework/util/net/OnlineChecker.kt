@@ -1,4 +1,4 @@
-package com.dpfht.thestore.util.net
+package com.dpfht.thestore.framework.util.net
 
 interface OnlineChecker {
 

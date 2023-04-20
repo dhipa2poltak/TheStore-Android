@@ -40,6 +40,8 @@ class ProductListFragment : Fragment() {
 
   private var isTablet = false
 
+  private var vw: View? = null
+
   override fun onAttach(context: Context) {
     super.onAttach(context)
 
@@ -55,28 +57,31 @@ class ProductListFragment : Fragment() {
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?
-  ): View {
+  ): View? {
 
     isTablet = requireContext().resources.getBoolean(com.dpfht.thestore.framework.R.bool.isTablet)
 
-    val view: View
     if (isTablet) {
-      val binding = FragmentProductListLandBinding.inflate(inflater, container, false)
+      if (vw == null) {
+        val binding = FragmentProductListLandBinding.inflate(inflater, container, false)
 
-      ivBanner = binding.ivBanner
-      rvProduct = binding.rvProduct
+        ivBanner = binding.ivBanner
+        rvProduct = binding.rvProduct
 
-      view = binding.root
+        vw = binding.root
+      }
     } else {
-      val binding = FragmentProductListBinding.inflate(inflater, container, false)
+      if (vw == null) {
+        val binding = FragmentProductListBinding.inflate(inflater, container, false)
 
-      ivBanner = binding.ivBanner
-      rvProduct = binding.rvProduct
+        ivBanner = binding.ivBanner
+        rvProduct = binding.rvProduct
 
-      view = binding.root
+        vw = binding.root
+      }
     }
 
-    return view
+    return vw
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

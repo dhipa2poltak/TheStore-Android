@@ -1,4 +1,4 @@
-package com.dpfht.thestore.framework.rest.api
+package com.dpfht.thestore.framework.data.core.api.rest
 
 import io.reactivex.observers.DisposableObserver
 import retrofit2.HttpException
@@ -14,11 +14,11 @@ abstract class CallbackWrapper<T : Any>: DisposableObserver<T>() {
     when (e) {
       is HttpException -> {
         //val response = e.response()
-        /*
-        val errorResponse = response?.let { ErrorUtil.parseApiError(it) }
-        onErrorCall(errorResponse?.statusMessage ?: "")
-        */
-        onErrorCall("error in response")
+
+        //val errorResponse = response?.let { ErrorUtil.parseApiError(it) }
+        //onErrorCall(errorResponse?.statusMessage ?: "")
+
+        onErrorCall(e.message ?: "error in response")
       }
       is IOException -> {
         onErrorCall("error in connection")

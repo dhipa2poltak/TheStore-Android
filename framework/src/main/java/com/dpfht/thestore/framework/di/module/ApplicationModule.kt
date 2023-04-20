@@ -2,17 +2,19 @@ package com.dpfht.thestore.framework.di.module
 
 import android.content.Context
 import com.dpfht.thestore.TheApplication
-import com.dpfht.thestore.data.repository.AppDataSource
-import com.dpfht.thestore.data.repository.AppRepository
-import com.dpfht.thestore.framework.AppRepositoryImpl
+import com.dpfht.thestore.data.datasource.AppDataSource
+import com.dpfht.thestore.data.datasource.NetworkStateDataSource
+import com.dpfht.thestore.data.repository.AppRepositoryImpl
+import com.dpfht.thestore.domain.repository.AppRepository
 import com.dpfht.thestore.framework.di.ApplicationContext
 import com.dpfht.thestore.framework.di.LocalDataSourceQ
 import com.dpfht.thestore.framework.di.RemoteDataSourceQ
-import com.dpfht.thestore.framework.LocalDataSourceImpl
-import com.dpfht.thestore.framework.RemoteDataSourceImpl
-import com.dpfht.thestore.framework.rest.api.RestService
-import com.dpfht.thestore.util.net.DefaultOnlineChecker
-import com.dpfht.thestore.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.LocalDataSourceImpl
+import com.dpfht.thestore.framework.data.datasource.RemoteDataSourceImpl
+import com.dpfht.thestore.framework.data.core.api.rest.RestService
+import com.dpfht.thestore.framework.data.datasource.NetworkStateDataSourceImpl
+import com.dpfht.thestore.framework.util.net.DefaultOnlineChecker
+import com.dpfht.thestore.framework.util.net.OnlineChecker
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -48,11 +50,17 @@ class ApplicationModule(private val theApplication: TheApplication) {
 
   @Provides
   @Singleton
+  fun provideNetworkStateDataSource(onlineChecker: OnlineChecker): NetworkStateDataSource {
+    return NetworkStateDataSourceImpl(onlineChecker)
+  }
+
+  @Provides
+  @Singleton
   fun provideAppRepository(
     @RemoteDataSourceQ remoteDataSource: AppDataSource,
     @LocalDataSourceQ localDataSource: AppDataSource,
-    onlineChecker: OnlineChecker
+    networkStateDataSource: NetworkStateDataSource
   ): AppRepository {
-    return AppRepositoryImpl(remoteDataSource, localDataSource, onlineChecker)
+    return AppRepositoryImpl(remoteDataSource, localDataSource, networkStateDataSource)
   }
 }

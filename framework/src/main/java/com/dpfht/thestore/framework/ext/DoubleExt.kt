@@ -1,4 +1,4 @@
-package com.dpfht.thestore.ext
+package com.dpfht.thestore.framework.ext
 
 import java.text.NumberFormat
 import java.util.Locale

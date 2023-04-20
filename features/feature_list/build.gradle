@@ -51,7 +51,6 @@ android {
 dependencies {
 
   implementation project(":framework")
-  implementation project(":data")
   implementation project(":domain")
   implementation project(":features:feature_details")
 

@@ -1,9 +1,9 @@
 package com.dpfht.thestore.domain.usecase
 
-import com.dpfht.thestore.data.model.remote.DataResponse
+import com.dpfht.thestore.domain.entity.DataDomain
 import io.reactivex.Observable
 
 interface GetProductsUseCase {
 
-  operator fun invoke(): Observable<DataResponse>
+  operator fun invoke(): Observable<DataDomain>
 }

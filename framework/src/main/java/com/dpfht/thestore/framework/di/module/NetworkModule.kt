@@ -1,7 +1,7 @@
 package com.dpfht.thestore.framework.di.module
 
 import com.dpfht.thestore.framework.BuildConfig
-import com.dpfht.thestore.framework.rest.api.RestService
+import com.dpfht.thestore.framework.data.core.api.rest.RestService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -28,8 +28,8 @@ class NetworkModule {
     return httpClientBuilder.build()
   }
 
-  @Singleton
   @Provides
+  @Singleton
   fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
       .baseUrl(BuildConfig.BASE_URL)
@@ -39,8 +39,8 @@ class NetworkModule {
       .build()
   }
 
-  @Singleton
   @Provides
+  @Singleton
   fun provideRestService(retrofit: Retrofit): RestService {
     return retrofit.create(RestService::class.java)
   }

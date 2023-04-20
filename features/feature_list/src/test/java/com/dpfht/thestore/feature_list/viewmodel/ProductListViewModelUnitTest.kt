@@ -5,10 +5,13 @@ import androidx.lifecycle.Observer
 import com.dpfht.thestore.data.model.remote.Data
 import com.dpfht.thestore.data.model.remote.DataResponse
 import com.dpfht.thestore.data.model.remote.Product
+import com.dpfht.thestore.domain.entity.DataDomain
+import com.dpfht.thestore.domain.entity.DataEntity
+import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
 import com.dpfht.thestore.feature_list.RxImmediateSchedulerRule
 import com.dpfht.thestore.feature_list.view.ProductListViewModel
-import com.dpfht.thestore.util.net.OnlineChecker
+import com.dpfht.thestore.framework.util.net.OnlineChecker
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import org.junit.Before
@@ -35,7 +38,7 @@ class ProductListViewModelUnitTest {
   @Mock
   private lateinit var getProductsUseCase: GetProductsUseCase
 
-  private val listOfProduct = arrayListOf<Product>()
+  private val listOfProduct = arrayListOf<ProductEntity>()
   private val compositeDisposable = CompositeDisposable()
 
   @Mock
@@ -57,9 +60,9 @@ class ProductListViewModelUnitTest {
 
   @Test
   fun `fetch product successfully`() {
-    val products = arrayListOf(Product(), Product(), Product())
-    val data = Data(products = products)
-    val dataResponse = DataResponse("200", "success", data)
+    val products = arrayListOf(ProductEntity(), ProductEntity(), ProductEntity())
+    val data = DataEntity(products = products)
+    val dataResponse = DataDomain(data)
 
     whenever(onlineChecker.isOnline()).thenReturn(true)
     whenever(getProductsUseCase.invoke()).thenReturn(Observable.just(dataResponse))

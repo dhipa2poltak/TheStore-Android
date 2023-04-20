@@ -1,4 +1,4 @@
-package com.dpfht.thestore.util.net
+package com.dpfht.thestore.framework.util.net
 
 import android.app.Application
 import android.content.BroadcastReceiver
@@ -14,8 +14,7 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Build.VERSION_CODES.LOLLIPOP
 import android.os.Handler
 import android.util.Log
-import com.dpfht.thestore.util.net.OnlineChecker.OnlineCheckerListener
-
+import com.dpfht.thestore.framework.util.net.OnlineChecker.OnlineCheckerListener
 
 class DefaultOnlineChecker(application: Application) : OnlineChecker {
 
