@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  val enterHomeReceiver = object : BroadcastReceiver() {
+  private val enterHomeReceiver = object : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
       unregisterReceiver(this)
 

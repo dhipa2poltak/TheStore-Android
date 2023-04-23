@@ -8,7 +8,7 @@
   <fragment
       android:id="@id/productDetailsFragment"
       android:name="com.dpfht.thestore.feature_details.view.ProductDetailsFragment"
-      android:label="judul"
+      android:label="details"
       tools:layout="@layout/fragment_product_details">
 
     <deepLink

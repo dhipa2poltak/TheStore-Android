@@ -11,6 +11,6 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class, NetworkModule::class])
 interface ApplicationComponent {
 
-  fun getAppRepository(): com.dpfht.thestore.domain.repository.AppRepository
+  fun getAppRepository(): AppRepository
   fun getOnlineChecker(): OnlineChecker
 }
