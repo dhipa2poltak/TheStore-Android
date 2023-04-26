@@ -1,6 +1,5 @@
 package com.dpfht.thestore.framework.util.net
 
-import android.app.Application
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -16,19 +15,13 @@ import android.os.Handler
 import android.util.Log
 import com.dpfht.thestore.framework.util.net.OnlineChecker.OnlineCheckerListener
 
-class DefaultOnlineChecker(application: Application) : OnlineChecker {
+class DefaultOnlineChecker(private val context: Context) : OnlineChecker {
 
   companion object {
     private const val TAG = "DefaultOnlineChecker"
   }
 
-  private val application: Application
-  private val connectivityManager: ConnectivityManager
-
-  init {
-    this.application = application
-    connectivityManager = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-  }
+  private val connectivityManager: ConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
   override fun isOnline(): Boolean {
     val netInfo = connectivityManager.activeNetworkInfo
@@ -36,7 +29,7 @@ class DefaultOnlineChecker(application: Application) : OnlineChecker {
   }
 
   override fun setOnNetworkStateChangedListener(listener: OnlineCheckerListener?) {
-    val mainHandler = Handler(application.mainLooper)
+    val mainHandler = Handler(context.mainLooper)
 
 
     if (SDK_INT >= LOLLIPOP) {
@@ -70,7 +63,7 @@ class DefaultOnlineChecker(application: Application) : OnlineChecker {
           mainHandler.post(publish)
         }
       }
-      application.registerReceiver(receiver, filter)
+      context.registerReceiver(receiver, filter)
     }
   }
 }
