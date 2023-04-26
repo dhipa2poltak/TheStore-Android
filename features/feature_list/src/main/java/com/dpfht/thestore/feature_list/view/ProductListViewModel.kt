@@ -1,15 +1,14 @@
 package com.dpfht.thestore.feature_list.view
 
-import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.navigation.NavDeepLinkRequest
+import androidx.navigation.NavController
 import com.dpfht.thestore.domain.entity.DataDomain
 import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
 import com.dpfht.thestore.framework.data.core.api.rest.CallbackWrapper
-import com.dpfht.thestore.framework.ext.toRupiahString
+import com.dpfht.thestore.framework.navigation.NavigationService
 import com.dpfht.thestore.framework.util.net.OnlineChecker
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -19,7 +18,8 @@ class ProductListViewModel constructor(
   private val getProdutsUseCase: GetProductsUseCase,
   private val compositeDisposable: CompositeDisposable,
   private val products: ArrayList<ProductEntity>,
-  private val onlineChecker: OnlineChecker
+  private val onlineChecker: OnlineChecker,
+  private val navigationService: NavigationService
 ): ViewModel() {
 
   private val mIsShowDialogLoading = MutableLiveData<Boolean>()
@@ -88,34 +88,20 @@ class ProductListViewModel constructor(
     mIsShowDialogLoading.value = false
   }
 
-  fun getNavDeepLinkRequest(position: Int): NavDeepLinkRequest {
+  fun navigateToProductDetails(position: Int, navController: NavController?) {
     val product = products[position]
 
-    val builder = Uri.Builder()
-    builder.scheme("android-app")
-      .authority("testproduct.dpfht.com")
-      .appendPath("details_fragment")
-      .appendQueryParameter("title", product.productName)
-      .appendQueryParameter("price", "${product.price.toRupiahString()} / pcs")
-      .appendQueryParameter("desc", product.description)
-      .appendQueryParameter("image", product.images?.large ?: "")
-
-    return NavDeepLinkRequest.Builder
-      .fromUri(builder.build())
-      .build()
+    navigationService.navigateToProductDetails(
+      product.productName,
+      product.price,
+      product.description,
+      product.images?.large ?: "",
+      navController
+    )
   }
 
-  fun getNavDeepLinkRequestErrorDialog(msg: String): NavDeepLinkRequest {
-
-    val builder = Uri.Builder()
-    builder.scheme("android-app")
-      .authority("testproduct.dpfht.com")
-      .appendPath("error_list_fragment")
-      .appendQueryParameter("message", msg)
-
-    return NavDeepLinkRequest.Builder
-      .fromUri(builder.build())
-      .build()
+  fun navigateToErrorMessageView(message: String) {
+    navigationService.navigateToErrorMessageView(message)
   }
 
   override fun onCleared() {
