@@ -24,8 +24,13 @@ class LocalDataSourceImpl(private val assetManager: AssetManager): AppDataSource
         text += mLine
         mLine = reader.readLine()
       }
-    } catch (e: IOException) {
+    } catch (e: Exception) {
       e.printStackTrace()
+
+      return Observable.create { emitter ->
+        emitter.onError(e)
+        emitter.onComplete()
+      }
     } finally {
       if (reader != null) {
         try {
@@ -35,12 +40,17 @@ class LocalDataSourceImpl(private val assetManager: AssetManager): AppDataSource
       }
     }
 
-    var dataResponse: DataResponse? = null
+    val dataResponse: DataResponse?
     try {
       val typeToken = object : TypeToken<DataResponse>() {}.type
       dataResponse = Gson().fromJson<DataResponse>(text, typeToken)
     } catch (e: Exception) {
       e.printStackTrace()
+
+      return Observable.create { emitter ->
+        emitter.onError(e)
+        emitter.onComplete()
+      }
     }
 
     return Observable.just(dataResponse ?: DataResponse())

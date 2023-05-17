@@ -21,9 +21,9 @@ abstract class CallbackWrapper<T : Any>: DisposableObserver<T>() {
         onErrorCall(e.message ?: "error in response")
       }
       is IOException -> {
-        onErrorCall("error in connection")
+        onErrorCall(e.message ?: "error in connection")
       } else -> {
-      onErrorCall("error in conversion")
+      onErrorCall(e.message ?: "error in conversion")
     }
     }
   }
