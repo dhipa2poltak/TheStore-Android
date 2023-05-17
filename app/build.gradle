@@ -69,6 +69,8 @@ android {
 
 dependencies {
 
+  def appDependencies = rootProject.ext.appDependencies
+
   implementation project(":framework")
   implementation project(":features:feature_list")
   implementation project(":features:feature_details")
@@ -82,8 +84,8 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.1.5'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-  implementation "androidx.multidex:multidex:2.0.1"
+  implementation appDependencies.multidex
 
-  implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-  implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+  implementation appDependencies.navigationFragmentKtx
+  implementation appDependencies.navigationUIKtx
 }

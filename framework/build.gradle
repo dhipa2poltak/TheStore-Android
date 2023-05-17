@@ -48,6 +48,8 @@ android {
 
 dependencies {
 
+  def frameworkDependencies = rootProject.ext.frameworkDependencies
+
   implementation project(":domain")
   implementation project(":data")
 
@@ -55,17 +57,17 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.1.5'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-  implementation "androidx.multidex:multidex:2.0.1"
+  implementation frameworkDependencies.multidex
 
-  implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-  implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+  implementation frameworkDependencies.navigationFragmentKtx
+  implementation frameworkDependencies.navigationUIKtx
 
-  implementation 'com.google.code.gson:gson:2.9.0'
-  implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-  implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-  implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
-  implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+  implementation frameworkDependencies.gson
+  implementation frameworkDependencies.retrofit2ConverterGson
+  implementation frameworkDependencies.okhttp
+  implementation frameworkDependencies.okhttpLoggingInterceptor
+  implementation frameworkDependencies.adapterRxJava
 
-  implementation 'com.google.dagger:dagger:2.42'
-  kapt 'com.google.dagger:dagger-compiler:2.42'
+  implementation frameworkDependencies.dagger
+  kapt frameworkDependencies.daggerCompiler
 }

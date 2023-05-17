@@ -50,6 +50,8 @@ android {
 
 dependencies {
 
+  def featureListDependencies = rootProject.ext.featureListDependencies
+
   implementation project(":framework")
   implementation project(":domain")
   implementation project(":features:feature_details")
@@ -64,18 +66,18 @@ dependencies {
   androidTestImplementation 'androidx.test.ext:junit:1.1.5'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-  implementation "io.reactivex.rxjava2:rxjava:2.2.9"
-  implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+  implementation featureListDependencies.rxJava
+  implementation featureListDependencies.rxAndroid
 
-  implementation 'javax.inject:javax.inject:1'
+  implementation featureListDependencies.inject
 
-  implementation 'com.google.dagger:dagger:2.42'
-  kapt 'com.google.dagger:dagger-compiler:2.42'
+  implementation featureListDependencies.dagger
+  kapt featureListDependencies.daggerCompiler
 
-  implementation 'com.squareup.picasso:picasso:2.8'
+  implementation featureListDependencies.picasso
 
-  testImplementation 'org.mockito.kotlin:mockito-kotlin:3.2.0'
-  testImplementation 'androidx.arch.core:core-testing:2.1.0'
+  testImplementation featureListDependencies.mockitoKotlin
+  testImplementation featureListDependencies.coreTesting
 
   testImplementation project(":data")
   testImplementation project(":domain")

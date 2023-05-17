@@ -10,5 +10,7 @@ java {
 
 dependencies {
 
-  implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+  def domainDependencies = rootProject.ext.domainDependencies
+
+  implementation domainDependencies.rxJava
 }

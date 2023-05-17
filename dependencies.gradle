@@ -1,0 +1,74 @@
+
+ext {
+
+  rxJavaVersion = '2.2.9'
+  gsonVersion = '2.9.0'
+  annotationVersion = '1.5.0'
+  multidexVersion = '2.0.1'
+  navigationFragmentKtxVersion = '2.5.3'
+  navigationUIKtxVersion = '2.5.3'
+  retrofit2ConverterGsonVersion = '2.9.0'
+  okhttpVersion = '4.9.3'
+  okhttpLoggingInterceptorVersion = '4.9.1'
+  adapterRxJavaVersion = '2.4.0'
+  daggerVersion = '2.42'
+  daggerCompilerVersion = '2.42'
+  rxAndroidVersion = '2.1.1'
+  injectVersion = '1'
+  picassoVersion = '2.8'
+  mockitoKotlinVersion = '3.2.0'
+  coreTestingVersion = '2.1.0'
+
+  domainDependencies = [
+      rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+  ]
+
+  dataDependencies = [
+      gson: "com.google.code.gson:gson:${gsonVersion}",
+      rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+      annotation: "androidx.annotation:annotation:${annotationVersion}"
+  ]
+
+  frameworkDependencies = [
+      multidex: "androidx.multidex:multidex:${multidexVersion}",
+      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
+      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
+      gson: "com.google.code.gson:gson:${gsonVersion}",
+      retrofit2ConverterGson: "com.squareup.retrofit2:converter-gson:${retrofit2ConverterGsonVersion}",
+      okhttp: "com.squareup.okhttp3:okhttp:${okhttpVersion}",
+      okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}",
+      adapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:${adapterRxJavaVersion}",
+      dagger: "com.google.dagger:dagger:${daggerVersion}",
+      daggerCompiler: "com.google.dagger:dagger-compiler:${daggerCompilerVersion}"
+  ]
+
+  appDependencies = [
+      multidex: "androidx.multidex:multidex:${multidexVersion}",
+      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
+      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
+  ]
+
+  featureSplashDependencies = [
+      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
+      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
+      dagger: "com.google.dagger:dagger:${daggerVersion}",
+      daggerCompiler: "com.google.dagger:dagger-compiler:${daggerCompilerVersion}"
+  ]
+
+  featureListDependencies = [
+      rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+      rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+      inject: "javax.inject:javax.inject:${injectVersion}",
+      dagger: "com.google.dagger:dagger:${daggerVersion}",
+      daggerCompiler: "com.google.dagger:dagger-compiler:${daggerCompilerVersion}",
+      picasso: "com.squareup.picasso:picasso:${picassoVersion}",
+      mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${mockitoKotlinVersion}",
+      coreTesting: "androidx.arch.core:core-testing:${coreTestingVersion}"
+  ]
+
+  featureDetailsDependencies = [
+      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
+      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
+      picasso: "com.squareup.picasso:picasso:${picassoVersion}",
+  ]
+}
