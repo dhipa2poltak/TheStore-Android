@@ -76,7 +76,7 @@ class ProductListViewModel constructor(
 
   private fun onSuccess(banner: String, products: ArrayList<ProductEntity>) {
     if (banner.isNotEmpty()) {
-      _banner.postValue(banner)
+      _banner.value = banner
     }
 
     for (product in products) {
@@ -84,12 +84,12 @@ class ProductListViewModel constructor(
       _notifyItemInserted.value = this.products.size - 1
     }
 
-    mIsShowDialogLoading.postValue(false)
+    mIsShowDialogLoading.value = false
   }
 
   private fun onError(message: String) {
-    mErrorMessage.postValue(message)
-    mIsShowDialogLoading.postValue(false)
+    mErrorMessage.value = message
+    mIsShowDialogLoading.value = false
   }
 
   fun navigateToProductDetails(position: Int, navController: NavController?) {
