@@ -10,6 +10,7 @@ import com.dpfht.thestore.feature_list.view.ProductListFragment
 import com.dpfht.thestore.feature_list.view.ProductListViewModel
 import com.dpfht.thestore.framework.di.ActivityContext
 import com.dpfht.thestore.framework.di.FragmentScope
+import com.dpfht.thestore.framework.navigation.NavigationService
 import com.dpfht.thestore.framework.util.net.OnlineChecker
 import dagger.Module
 import dagger.Provides
@@ -49,9 +50,10 @@ class ProductListModule(private val productListFragment: ProductListFragment) {
     getProductsUseCase: GetProductsUseCase,
     compositeDisposable: CompositeDisposable,
     products: ArrayList<ProductEntity>,
-    onlineChecker: OnlineChecker
+    onlineChecker: OnlineChecker,
+    navigationService: NavigationService
   ): ProductListViewModel {
-    return ProductListViewModel(getProductsUseCase, compositeDisposable, products, onlineChecker)
+    return ProductListViewModel(getProductsUseCase, compositeDisposable, products, onlineChecker, navigationService)
   }
 
   @Provides

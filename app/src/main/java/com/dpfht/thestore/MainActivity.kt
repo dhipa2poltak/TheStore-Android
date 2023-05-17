@@ -1,9 +1,5 @@
 package com.dpfht.thestore
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -13,12 +9,18 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.dpfht.thestore.framework.R as FrameworkR
 import com.dpfht.thestore.databinding.ActivityMainBinding
-import com.dpfht.thestore.framework.BroadcastConstants
+import com.dpfht.thestore.framework.di.NavigationComponent
+import com.dpfht.thestore.framework.di.DaggerNavigationComponent
+import com.dpfht.thestore.framework.di.module.NavigationModule
+import com.dpfht.thestore.framework.di.provider.NavigationComponentProvider
+import com.dpfht.thestore.navigation.NavigationServiceImpl
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationComponentProvider {
 
   private lateinit var binding: ActivityMainBinding
   private lateinit var navController: NavController
+
+  private lateinit var navigationComponent: NavigationComponent
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -33,9 +35,13 @@ class MainActivity : AppCompatActivity() {
     val navHostFragment =
       supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
     navController = navHostFragment.navController
-    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
-    registerReceiver(enterHomeReceiver, IntentFilter(BroadcastConstants.BROADCAST_ENTER_HOME))
+    navigationComponent = DaggerNavigationComponent
+      .builder()
+      .navigationModule(NavigationModule(NavigationServiceImpl(navController)))
+      .build()
+
+    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
   }
 
   override fun onSupportNavigateUp(): Boolean {
@@ -58,24 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
-  private val enterHomeReceiver = object : BroadcastReceiver() {
-    override fun onReceive(context: Context?, intent: Intent?) {
-      unregisterReceiver(this)
-
-      val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-      navGraph.setStartDestination(com.dpfht.thestore.framework.R.id.list_nav_graph)
-
-      navController.graph = navGraph
-    }
-  }
-
-  override fun onDestroy() {
-    super.onDestroy()
-
-    try {
-      unregisterReceiver(enterHomeReceiver)
-    } catch (e: Exception) {
-      //--ignore
-    }
+  override fun provideNavigationComponent(): NavigationComponent {
+    return navigationComponent
   }
 }

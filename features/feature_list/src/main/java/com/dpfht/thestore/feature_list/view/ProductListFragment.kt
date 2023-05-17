@@ -10,17 +10,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.dpfht.thestore.TheApplication
 import com.dpfht.thestore.feature_list.R
 import com.dpfht.thestore.feature_list.adapter.ProductListAdapter
 import com.dpfht.thestore.feature_list.databinding.FragmentProductListBinding
 import com.dpfht.thestore.feature_list.databinding.FragmentProductListLandBinding
 import com.dpfht.thestore.feature_list.di.DaggerProductListComponent
 import com.dpfht.thestore.feature_list.di.ProductListModule
+import com.dpfht.thestore.framework.di.provider.ApplicationComponentProvider
+import com.dpfht.thestore.framework.di.provider.NavigationComponentProvider
 import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
@@ -48,7 +48,8 @@ class ProductListFragment : Fragment() {
     val productListComponent = DaggerProductListComponent
       .builder()
       .productListModule(ProductListModule(this))
-      .applicationComponent(TheApplication.instance.applicationComponent)
+      .navigationComponent((requireActivity() as NavigationComponentProvider).provideNavigationComponent())
+      .applicationComponent((requireActivity().applicationContext as ApplicationComponentProvider).provideApplicationComponent())
       .build()
 
     productListComponent.inject(this)
@@ -97,15 +98,13 @@ class ProductListFragment : Fragment() {
 
     adapter.onClickProductListener = object : ProductListAdapter.OnClickProductListener {
       override fun onClickProduct(position: Int) {
-        val request = viewModel.getNavDeepLinkRequest(position)
 
         if (isTablet) {
           val navHostFragment =
             childFragmentManager.findFragmentById(R.id.details_nav_container) as NavHostFragment
-          navHostFragment.navController.navigate(request)
+          viewModel.navigateToProductDetails(position, navHostFragment.navController)
         } else {
-          Navigation.findNavController(requireView())
-            .navigate(request)
+          viewModel.navigateToProductDetails(position, null)
         }
       }
     }
@@ -154,7 +153,6 @@ class ProductListFragment : Fragment() {
   }
 
   private fun showErrorMessage(message: String) {
-    val request = viewModel.getNavDeepLinkRequestErrorDialog(message)
-    Navigation.findNavController(requireView()).navigate(request)
+    viewModel.navigateToErrorMessageView(message)
   }
 }
