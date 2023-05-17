@@ -8,7 +8,7 @@ import com.dpfht.thestore.domain.entity.ProductEntity
 @Keep
 data class Data(
   val banner: String = "",
-  val products: List<Product> = arrayListOf()
+  val products: List<Product> = listOf()
 )
 
 fun Data.toDomain(): DataEntity {
