@@ -39,16 +39,20 @@ class ProductListViewModel constructor(
 
   fun start() {
     if (products.isEmpty()) {
-      if (!onlineChecker.isOnline()) {
-        mToastMessage.value = "you are in offline mode"
-      }
+      mToastMessage.postValue(
+        if (!onlineChecker.isOnline()) {
+          "you are in offline mode"
+        } else {
+          ""
+        }
+      )
 
       getProducts()
     }
   }
 
   private fun getProducts() {
-    mIsShowDialogLoading.value = true
+    mIsShowDialogLoading.postValue(true)
 
     val subs = getProdutsUseCase()
       .map { it }
@@ -72,7 +76,7 @@ class ProductListViewModel constructor(
 
   private fun onSuccess(banner: String, products: ArrayList<ProductEntity>) {
     if (banner.isNotEmpty()) {
-      _banner.value = banner
+      _banner.postValue(banner)
     }
 
     for (product in products) {
@@ -80,12 +84,12 @@ class ProductListViewModel constructor(
       _notifyItemInserted.value = this.products.size - 1
     }
 
-    mIsShowDialogLoading.value = false
+    mIsShowDialogLoading.postValue(false)
   }
 
   private fun onError(message: String) {
-    mErrorMessage.value = message
-    mIsShowDialogLoading.value = false
+    mErrorMessage.postValue(message)
+    mIsShowDialogLoading.postValue(false)
   }
 
   fun navigateToProductDetails(position: Int, navController: NavController?) {
@@ -102,6 +106,11 @@ class ProductListViewModel constructor(
 
   fun navigateToErrorMessageView(message: String) {
     navigationService.navigateToErrorMessageView(message)
+  }
+
+  fun refresh() {
+    products.clear()
+    start()
   }
 
   override fun onCleared() {

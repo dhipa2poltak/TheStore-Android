@@ -25,19 +25,6 @@ class TheApplication: Application(), ApplicationComponentProvider {
     super.onCreate()
     instance = this
 
-    if (BuildConfig.DEBUG) {
-      StrictMode.setThreadPolicy(
-        Builder().detectAll()
-          .penaltyLog()
-          .build()
-      )
-      StrictMode.setVmPolicy(
-        VmPolicy.Builder().detectAll()
-          .penaltyLog()
-          .build()
-      )
-    }
-
     applicationComponent = DaggerApplicationComponent
       .builder()
       .applicationModule(ApplicationModule(this))

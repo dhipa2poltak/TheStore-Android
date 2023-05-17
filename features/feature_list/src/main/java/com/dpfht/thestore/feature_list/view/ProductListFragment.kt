@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.dpfht.thestore.feature_list.R
 import com.dpfht.thestore.feature_list.adapter.ProductListAdapter
 import com.dpfht.thestore.feature_list.databinding.FragmentProductListBinding
@@ -36,6 +37,7 @@ class ProductListFragment : Fragment() {
   lateinit var adapter: ProductListAdapter
 
   private lateinit var ivBanner: ImageView
+  private lateinit var swRefresh: SwipeRefreshLayout
   private lateinit var rvProduct: RecyclerView
 
   private var isTablet = false
@@ -67,6 +69,7 @@ class ProductListFragment : Fragment() {
         val binding = FragmentProductListLandBinding.inflate(inflater, container, false)
 
         ivBanner = binding.ivBanner
+        swRefresh = binding.swRefresh
         rvProduct = binding.rvProduct
 
         vw = binding.root
@@ -76,6 +79,7 @@ class ProductListFragment : Fragment() {
         val binding = FragmentProductListBinding.inflate(inflater, container, false)
 
         ivBanner = binding.ivBanner
+        swRefresh = binding.swRefresh
         rvProduct = binding.rvProduct
 
         vw = binding.root
@@ -109,11 +113,24 @@ class ProductListFragment : Fragment() {
       }
     }
 
+    swRefresh.setOnRefreshListener {
+      adapter.products.clear()
+      adapter.notifyDataSetChanged()
+      viewModel.refresh()
+    }
+
+    observeViewModel()
+
+    viewModel.start()
+  }
+
+  private fun observeViewModel() {
     viewModel.isShowDialogLoading.observe(viewLifecycleOwner) { isLoading ->
-      if (isLoading) {
+      if (isLoading && !swRefresh.isRefreshing) {
         prgDialog.show()
       } else {
         prgDialog.dismiss()
+        swRefresh.isRefreshing = false
       }
     }
 
@@ -143,8 +160,6 @@ class ProductListFragment : Fragment() {
         showErrorMessage(msg)
       }
     }
-
-    viewModel.start()
   }
 
   private fun setToolbar() {
