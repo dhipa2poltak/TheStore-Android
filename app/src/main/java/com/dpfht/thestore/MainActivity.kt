@@ -9,8 +9,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.dpfht.thestore.R.id
+import com.dpfht.thestore.framework.R as FrameworkR
 import com.dpfht.thestore.databinding.ActivityMainBinding
 import com.dpfht.thestore.framework.BroadcastConstants
 
@@ -25,10 +26,14 @@ class MainActivity : AppCompatActivity() {
     setToolbar()
     setContentView(binding.root)
 
+    val appBarConfiguration = AppBarConfiguration(
+      setOf(FrameworkR.id.productListFragment)
+    )
+
     val navHostFragment =
-      supportFragmentManager.findFragmentById(id.my_nav_host_fragment) as NavHostFragment
+      supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment
     navController = navHostFragment.navController
-    NavigationUI.setupActionBarWithNavController(this, navController)
+    NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
     registerReceiver(enterHomeReceiver, IntentFilter(BroadcastConstants.BROADCAST_ENTER_HOME))
   }
