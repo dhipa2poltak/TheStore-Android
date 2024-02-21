@@ -11,6 +11,7 @@ import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
 import com.dpfht.thestore.feature_list.RxImmediateSchedulerRule
 import com.dpfht.thestore.feature_list.view.ProductListViewModel
+import com.dpfht.thestore.framework.navigation.NavigationService
 import com.dpfht.thestore.framework.util.net.OnlineChecker
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -45,6 +46,9 @@ class ProductListViewModelUnitTest {
   private lateinit var onlineChecker: OnlineChecker
 
   @Mock
+  private lateinit var navigationService: NavigationService
+
+  @Mock
   private lateinit var notifyItemInsertedObserver: Observer<Int>
 
   @Mock
@@ -55,7 +59,7 @@ class ProductListViewModelUnitTest {
 
   @Before
   fun setup() {
-    viewModel = ProductListViewModel(getProductsUseCase, compositeDisposable, listOfProduct, onlineChecker)
+    viewModel = ProductListViewModel(getProductsUseCase, compositeDisposable, listOfProduct, onlineChecker, navigationService)
   }
 
   @Test
