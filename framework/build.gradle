@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-  compileSdk 33
+  compileSdk ConfigData.compileSdkVersion
 
   defaultConfig {
-    minSdk 19
-    targetSdk 33
+    minSdk ConfigData.minSdkVersion
+    targetSdk ConfigData.targetSdkVersion
 
     multiDexEnabled true
 
@@ -48,26 +48,24 @@ android {
 
 dependencies {
 
-  def frameworkDependencies = rootProject.ext.frameworkDependencies
-
   implementation project(":domain")
   implementation project(":data")
 
-  testImplementation 'junit:junit:4.13.2'
-  androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+  testImplementation Deps.jUnit
+  androidTestImplementation Deps.jUnitExt
+  androidTestImplementation Deps.espresso
 
-  implementation frameworkDependencies.multidex
+  implementation Deps.multidex
 
-  implementation frameworkDependencies.navigationFragmentKtx
-  implementation frameworkDependencies.navigationUIKtx
+  implementation Deps.navigationFragmentKtx
+  implementation Deps.navigationUIKtx
 
-  implementation frameworkDependencies.gson
-  implementation frameworkDependencies.retrofit2ConverterGson
-  implementation frameworkDependencies.okhttp
-  implementation frameworkDependencies.okhttpLoggingInterceptor
-  implementation frameworkDependencies.adapterRxJava
+  implementation Deps.gson
+  implementation Deps.retrofit2ConverterGson
+  implementation Deps.okhttp
+  implementation Deps.okhttpLoggingInterceptor
+  implementation Deps.adapterRxJava
 
-  implementation frameworkDependencies.dagger
-  kapt frameworkDependencies.daggerCompiler
+  implementation Deps.dagger
+  kapt Deps.daggerCompiler
 }

@@ -10,7 +10,5 @@ java {
 
 dependencies {
 
-  def domainDependencies = rootProject.ext.domainDependencies
-
-  implementation domainDependencies.rxJava
+  implementation Deps.rxJava
 }

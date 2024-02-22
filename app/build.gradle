@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-  compileSdk 33
+  compileSdk ConfigData.compileSdkVersion
 
   defaultConfig {
     applicationId "com.dpfht.thestore"
-    minSdk 19
-    targetSdk 33
+    minSdk ConfigData.minSdkVersion
+    targetSdk ConfigData.targetSdkVersion
     versionCode 2
     versionName "1.2"
 
@@ -69,23 +69,21 @@ android {
 
 dependencies {
 
-  def appDependencies = rootProject.ext.appDependencies
-
   implementation project(":framework")
   implementation project(":features:feature_list")
   implementation project(":features:feature_details")
   implementation project(":features:feature_splash")
 
-  implementation 'androidx.core:core-ktx:1.9.0'
-  implementation 'androidx.appcompat:appcompat:1.6.0'
-  implementation 'com.google.android.material:material:1.8.0'
-  implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-  testImplementation 'junit:junit:4.13.2'
-  androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+  implementation Deps.coreKtx
+  implementation Deps.appCompat
+  implementation Deps.material
+  implementation Deps.constraintLayout
+  testImplementation Deps.jUnit
+  androidTestImplementation Deps.jUnitExt
+  androidTestImplementation Deps.espresso
 
-  implementation appDependencies.multidex
+  implementation Deps.multidex
 
-  implementation appDependencies.navigationFragmentKtx
-  implementation appDependencies.navigationUIKtx
+  implementation Deps.navigationFragmentKtx
+  implementation Deps.navigationUIKtx
 }

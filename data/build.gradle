@@ -10,11 +10,9 @@ java {
 
 dependencies {
 
-  def dataDependencies = rootProject.ext.dataDependencies
-
   implementation project(":domain")
 
-  implementation dataDependencies.gson
-  implementation dataDependencies.rxJava
-  implementation dataDependencies.annotation
+  implementation Deps.gson
+  implementation Deps.rxJava
+  implementation Deps.annotation
 }

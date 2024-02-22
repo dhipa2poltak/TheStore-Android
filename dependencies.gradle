@@ -1,74 +1,65 @@
 
 ext {
 
-  rxJavaVersion = '2.2.9'
-  gsonVersion = '2.9.0'
-  annotationVersion = '1.5.0'
-  multidexVersion = '2.0.1'
-  navigationFragmentKtxVersion = '2.5.3'
-  navigationUIKtxVersion = '2.5.3'
-  retrofit2ConverterGsonVersion = '2.9.0'
-  okhttpVersion = '4.9.3'
-  okhttpLoggingInterceptorVersion = '4.9.1'
-  adapterRxJavaVersion = '2.4.0'
-  daggerVersion = '2.42'
-  daggerCompilerVersion = '2.42'
-  rxAndroidVersion = '2.1.1'
-  injectVersion = '1'
-  picassoVersion = '2.8'
-  mockitoKotlinVersion = '3.2.0'
-  coreTestingVersion = '2.1.0'
-
-  domainDependencies = [
-      rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+  ConfigData = [
+      compileSdkVersion: 33,
+      minSdkVersion: 19,
+      targetSdkVersion: 33
   ]
 
-  dataDependencies = [
-      gson: "com.google.code.gson:gson:${gsonVersion}",
-      rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-      annotation: "androidx.annotation:annotation:${annotationVersion}"
+  Versions = [
+      coreKtx: '1.9.0',
+      appCompat: '1.6.0',
+      material: '1.8.0',
+      constraintLayout: '2.1.4',
+      jUnit: '4.13.2',
+      jUnitExt: '1.1.5',
+      espresso: '3.5.1',
+      rxJavaVersion: '2.2.9',
+      gsonVersion: '2.9.0',
+      annotationVersion: '1.5.0',
+      multidexVersion: '2.0.1',
+      navigationFragmentKtxVersion: '2.5.3',
+      navigationUIKtxVersion: '2.5.3',
+      retrofit2ConverterGsonVersion: '2.9.0',
+      okhttpVersion: '4.9.3',
+      okhttpLoggingInterceptorVersion: '4.9.1',
+      adapterRxJavaVersion: '2.4.0',
+      daggerVersion: '2.42',
+      daggerCompilerVersion: '2.42',
+      rxAndroidVersion: '2.1.1',
+      injectVersion: '1',
+      picassoVersion: '2.8',
+      swipeRefreshLayout: '1.1.0',
+      mockitoKotlinVersion: '3.2.0',
+      coreTestingVersion: '2.1.0'
   ]
 
-  frameworkDependencies = [
-      multidex: "androidx.multidex:multidex:${multidexVersion}",
-      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
-      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
-      gson: "com.google.code.gson:gson:${gsonVersion}",
-      retrofit2ConverterGson: "com.squareup.retrofit2:converter-gson:${retrofit2ConverterGsonVersion}",
-      okhttp: "com.squareup.okhttp3:okhttp:${okhttpVersion}",
-      okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${okhttpLoggingInterceptorVersion}",
-      adapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:${adapterRxJavaVersion}",
-      dagger: "com.google.dagger:dagger:${daggerVersion}",
-      daggerCompiler: "com.google.dagger:dagger-compiler:${daggerCompilerVersion}"
-  ]
-
-  appDependencies = [
-      multidex: "androidx.multidex:multidex:${multidexVersion}",
-      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
-      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
-  ]
-
-  featureSplashDependencies = [
-      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
-      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
-      dagger: "com.google.dagger:dagger:${daggerVersion}",
-      daggerCompiler: "com.google.dagger:dagger-compiler:${daggerCompilerVersion}"
-  ]
-
-  featureListDependencies = [
-      rxJava: "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-      rxAndroid: "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
-      inject: "javax.inject:javax.inject:${injectVersion}",
-      dagger: "com.google.dagger:dagger:${daggerVersion}",
-      daggerCompiler: "com.google.dagger:dagger-compiler:${daggerCompilerVersion}",
-      picasso: "com.squareup.picasso:picasso:${picassoVersion}",
-      mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${mockitoKotlinVersion}",
-      coreTesting: "androidx.arch.core:core-testing:${coreTestingVersion}"
-  ]
-
-  featureDetailsDependencies = [
-      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentKtxVersion}",
-      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${navigationUIKtxVersion}",
-      picasso: "com.squareup.picasso:picasso:${picassoVersion}",
+  Deps = [
+      coreKtx: "androidx.core:core-ktx:${Versions.coreKtx}",
+      appCompat: "androidx.appcompat:appcompat:${Versions.appCompat}",
+      material: "com.google.android.material:material:${Versions.material}",
+      constraintLayout: "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}",
+      jUnit: "junit:junit:${Versions.jUnit}",
+      jUnitExt: "androidx.test.ext:junit:${Versions.jUnitExt}",
+      espresso: "androidx.test.espresso:espresso-core:${Versions.espresso}",
+      rxJava: "io.reactivex.rxjava2:rxjava:${Versions.rxJavaVersion}",
+      rxAndroid: "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroidVersion}",
+      gson: "com.google.code.gson:gson:${Versions.gsonVersion}",
+      annotation: "androidx.annotation:annotation:${Versions.annotationVersion}",
+      multidex: "androidx.multidex:multidex:${Versions.multidexVersion}",
+      navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${Versions.navigationFragmentKtxVersion}",
+      navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${Versions.navigationUIKtxVersion}",
+      retrofit2ConverterGson: "com.squareup.retrofit2:converter-gson:${Versions.retrofit2ConverterGsonVersion}",
+      okhttp: "com.squareup.okhttp3:okhttp:${Versions.okhttpVersion}",
+      okhttpLoggingInterceptor: "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLoggingInterceptorVersion}",
+      adapterRxJava: "com.squareup.retrofit2:adapter-rxjava2:${Versions.adapterRxJavaVersion}",
+      dagger: "com.google.dagger:dagger:${Versions.daggerVersion}",
+      daggerCompiler: "com.google.dagger:dagger-compiler:${Versions.daggerCompilerVersion}",
+      inject: "javax.inject:javax.inject:${Versions.injectVersion}",
+      picasso: "com.squareup.picasso:picasso:${Versions.picassoVersion}",
+      swipeRefreshLayout: "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}",
+      mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlinVersion}",
+      coreTesting: "androidx.arch.core:core-testing:${Versions.coreTestingVersion}"
   ]
 }
