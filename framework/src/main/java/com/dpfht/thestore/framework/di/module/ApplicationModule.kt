@@ -5,10 +5,10 @@ import com.dpfht.thestore.data.datasource.AppDataSource
 import com.dpfht.thestore.data.datasource.NetworkStateDataSource
 import com.dpfht.thestore.data.repository.AppRepositoryImpl
 import com.dpfht.thestore.domain.repository.AppRepository
-import com.dpfht.thestore.framework.data.core.api.rest.RestService
-import com.dpfht.thestore.framework.data.datasource.LocalDataSourceImpl
-import com.dpfht.thestore.framework.data.datasource.NetworkStateDataSourceImpl
-import com.dpfht.thestore.framework.data.datasource.RemoteDataSourceImpl
+import com.dpfht.thestore.framework.data.datasource.remote.rest.RestService
+import com.dpfht.thestore.framework.data.datasource.local.LocalDataSourceImpl
+import com.dpfht.thestore.framework.data.datasource.local.NetworkStateDataSourceImpl
+import com.dpfht.thestore.framework.data.datasource.remote.RemoteDataSourceImpl
 import com.dpfht.thestore.framework.di.ApplicationContext
 import com.dpfht.thestore.framework.di.LocalDataSourceQ
 import com.dpfht.thestore.framework.di.RemoteDataSourceQ

@@ -2,7 +2,7 @@ package com.dpfht.thestore.framework.di.module
 
 import com.dpfht.thestore.framework.BuildConfig
 import com.dpfht.thestore.framework.Config
-import com.dpfht.thestore.framework.data.core.api.rest.RestService
+import com.dpfht.thestore.framework.data.datasource.remote.rest.RestService
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

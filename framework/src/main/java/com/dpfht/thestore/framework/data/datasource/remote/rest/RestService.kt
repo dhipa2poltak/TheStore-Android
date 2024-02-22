@@ -1,4 +1,4 @@
-package com.dpfht.thestore.framework.data.core.api.rest
+package com.dpfht.thestore.framework.data.datasource.remote.rest
 
 import com.dpfht.thestore.data.model.remote.DataResponse
 import io.reactivex.Observable

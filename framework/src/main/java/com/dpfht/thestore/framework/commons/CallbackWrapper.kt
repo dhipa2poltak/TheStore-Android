@@ -1,4 +1,4 @@
-package com.dpfht.thestore.framework.data.core.api.rest
+package com.dpfht.thestore.framework.commons
 
 import io.reactivex.observers.DisposableObserver
 import retrofit2.HttpException

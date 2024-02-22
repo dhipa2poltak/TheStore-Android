@@ -1,4 +1,4 @@
-package com.dpfht.thestore.framework.data.datasource
+package com.dpfht.thestore.framework.data.datasource.local
 
 import android.content.res.AssetManager
 import com.dpfht.thestore.data.model.remote.DataResponse
@@ -10,7 +10,9 @@ import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
 
-class LocalDataSourceImpl(private val assetManager: AssetManager): AppDataSource {
+class LocalDataSourceImpl(
+  private val assetManager: AssetManager
+): AppDataSource {
 
   override fun getProducts(): Observable<DataResponse> {
     var text = ""
@@ -35,7 +37,7 @@ class LocalDataSourceImpl(private val assetManager: AssetManager): AppDataSource
       if (reader != null) {
         try {
           reader.close()
-        } catch (e: IOException) {
+        } catch (_: IOException) {
         }
       }
     }

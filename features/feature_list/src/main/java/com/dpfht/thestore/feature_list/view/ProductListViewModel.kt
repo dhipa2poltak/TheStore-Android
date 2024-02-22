@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import com.dpfht.thestore.domain.entity.DataDomain
 import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
-import com.dpfht.thestore.framework.data.core.api.rest.CallbackWrapper
+import com.dpfht.thestore.framework.commons.CallbackWrapper
 import com.dpfht.thestore.framework.navigation.NavigationService
 import com.dpfht.thestore.framework.util.net.OnlineChecker
 import io.reactivex.android.schedulers.AndroidSchedulers
