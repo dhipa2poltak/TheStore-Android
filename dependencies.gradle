@@ -3,7 +3,7 @@ ext {
 
   ConfigData = [
       compileSdkVersion: 33,
-      minSdkVersion: 19,
+      minSdkVersion: 21,
       targetSdkVersion: 33
   ]
 
@@ -18,7 +18,6 @@ ext {
       rxJavaVersion: '2.2.9',
       gsonVersion: '2.9.0',
       annotationVersion: '1.5.0',
-      multidexVersion: '2.0.1',
       navigationFragmentKtxVersion: '2.5.3',
       navigationUIKtxVersion: '2.5.3',
       retrofit2ConverterGsonVersion: '2.9.0',
@@ -47,7 +46,6 @@ ext {
       rxAndroid: "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroidVersion}",
       gson: "com.google.code.gson:gson:${Versions.gsonVersion}",
       annotation: "androidx.annotation:annotation:${Versions.annotationVersion}",
-      multidex: "androidx.multidex:multidex:${Versions.multidexVersion}",
       navigationFragmentKtx: "androidx.navigation:navigation-fragment-ktx:${Versions.navigationFragmentKtxVersion}",
       navigationUIKtx: "androidx.navigation:navigation-ui-ktx:${Versions.navigationUIKtxVersion}",
       retrofit2ConverterGson: "com.squareup.retrofit2:converter-gson:${Versions.retrofit2ConverterGsonVersion}",

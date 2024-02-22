@@ -3,7 +3,6 @@ package com.dpfht.thestore.navigation
 import android.net.Uri
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
-import com.dpfht.thestore.R
 import com.dpfht.thestore.framework.ext.toRupiahString
 import com.dpfht.thestore.framework.navigation.NavigationService
 

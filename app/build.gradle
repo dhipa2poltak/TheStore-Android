@@ -73,9 +73,7 @@ android {
 dependencies {
 
   implementation project(":framework")
-  implementation project(":features:feature_list")
-  implementation project(":features:feature_details")
-  implementation project(":features:feature_splash")
+  implementation project(":navigation")
 
   implementation Deps.coreKtx
   implementation Deps.appCompat
@@ -84,8 +82,6 @@ dependencies {
   testImplementation Deps.jUnit
   androidTestImplementation Deps.jUnitExt
   androidTestImplementation Deps.espresso
-
-  implementation Deps.multidex
 
   implementation Deps.navigationFragmentKtx
   implementation Deps.navigationUIKtx
