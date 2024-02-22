@@ -61,6 +61,7 @@ dependencies {
   implementation Deps.picasso
 
   testImplementation Deps.mockitoKotlin
+  testImplementation Deps.mockitoInline
   testImplementation Deps.coreTesting
 
   testImplementation project(":data")

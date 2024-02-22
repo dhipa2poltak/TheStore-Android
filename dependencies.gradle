@@ -30,7 +30,8 @@ ext {
       injectVersion: '1',
       picassoVersion: '2.8',
       swipeRefreshLayout: '1.1.0',
-      mockitoKotlinVersion: '3.2.0',
+      mockitoKotlin: '5.2.1',
+      mockitoInline: '5.2.0',
       coreTestingVersion: '2.1.0'
   ]
 
@@ -57,7 +58,8 @@ ext {
       inject: "javax.inject:javax.inject:${Versions.injectVersion}",
       picasso: "com.squareup.picasso:picasso:${Versions.picassoVersion}",
       swipeRefreshLayout: "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}",
-      mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlinVersion}",
+      mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}",
+      mockitoInline: "org.mockito:mockito-inline:${Versions.mockitoInline}",
       coreTesting: "androidx.arch.core:core-testing:${Versions.coreTestingVersion}"
   ]
 }
