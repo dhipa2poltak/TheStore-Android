@@ -2,9 +2,9 @@
 ext {
 
   ConfigData = [
-      compileSdkVersion: 33,
+      compileSdkVersion: 34,
       minSdkVersion: 21,
-      targetSdkVersion: 33
+      targetSdkVersion: 34
   ]
 
   Versions = [
@@ -24,8 +24,8 @@ ext {
       okhttpVersion: '4.9.3',
       okhttpLoggingInterceptorVersion: '4.9.1',
       adapterRxJavaVersion: '2.4.0',
-      daggerVersion: '2.42',
-      daggerCompilerVersion: '2.42',
+      daggerVersion: '2.50',
+      daggerCompilerVersion: '2.50',
       rxAndroidVersion: '2.1.1',
       injectVersion: '1',
       picassoVersion: '2.8',
