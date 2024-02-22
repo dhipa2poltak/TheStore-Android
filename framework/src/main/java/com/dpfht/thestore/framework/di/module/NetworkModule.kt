@@ -1,6 +1,7 @@
 package com.dpfht.thestore.framework.di.module
 
 import com.dpfht.thestore.framework.BuildConfig
+import com.dpfht.thestore.framework.Config
 import com.dpfht.thestore.framework.data.core.api.rest.RestService
 import dagger.Module
 import dagger.Provides
@@ -32,7 +33,7 @@ class NetworkModule {
   @Singleton
   fun provideRetrofit(client: OkHttpClient): Retrofit {
     return Retrofit.Builder()
-      .baseUrl(BuildConfig.BASE_URL)
+      .baseUrl(Config.BASE_URL)
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .addConverterFactory(GsonConverterFactory.create())
       .client(client)

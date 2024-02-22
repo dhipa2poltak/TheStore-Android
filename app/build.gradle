@@ -51,18 +51,21 @@ android {
   productFlavors {
     staging {
       applicationId "com.dpfht.thestore.staging"
-
       manifestPlaceholders.appName = "TheStore-Staging"
+
+      buildConfigField 'String', 'BASE_URL', STAGING_BASE_URL
     }
     verify {
       applicationId "com.dpfht.thestore.verify"
-
       manifestPlaceholders.appName = "TheStore-Verify"
+
+      buildConfigField 'String', 'BASE_URL', VERIFY_BASE_URL
     }
     prod {
       applicationId "com.dpfht.thestore"
-
       manifestPlaceholders.appName = "TheStore"
+
+      buildConfigField 'String', 'BASE_URL', PROD_BASE_URL
     }
   }
 }

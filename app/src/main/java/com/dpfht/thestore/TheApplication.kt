@@ -2,11 +2,8 @@ package com.dpfht.thestore
 
 import android.app.Application
 import android.content.Context
-import android.os.StrictMode
-import android.os.StrictMode.ThreadPolicy.Builder
-import android.os.StrictMode.VmPolicy
 import androidx.multidex.MultiDex
-import com.dpfht.thestore.framework.BuildConfig
+import com.dpfht.thestore.framework.Config
 import com.dpfht.thestore.framework.di.ApplicationComponent
 import com.dpfht.thestore.framework.di.DaggerApplicationComponent
 import com.dpfht.thestore.framework.di.module.ApplicationModule
@@ -22,6 +19,7 @@ class TheApplication: Application(), ApplicationComponentProvider {
   private lateinit var applicationComponent: ApplicationComponent
 
   override fun onCreate() {
+    Config.BASE_URL = BuildConfig.BASE_URL
     super.onCreate()
     instance = this
 
