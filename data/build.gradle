@@ -15,4 +15,8 @@ dependencies {
   implementation Deps.gson
   implementation Deps.rxJava
   implementation Deps.annotation
+
+  testImplementation Deps.jUnit
+  testImplementation Deps.mockitoKotlin
+  testImplementation Deps.mockitoInline
 }
