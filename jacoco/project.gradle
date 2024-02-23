@@ -81,7 +81,8 @@ project.afterEvaluate {
             '**/*Adapter.*',
             '**/*Adapter*.*',
             '**/TheApplication*.*',
-            '**/framework/Config.*'
+            '**/framework/Config.*',
+            '**/DefaultOnlineChecker*.*'
         ]
 
         def jClasses = subprojects.collect { proj ->
