@@ -1,4 +1,4 @@
-package com.dpfht.thestore.feature_list.viewmodel
+package com.dpfht.thestore.feature_list.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
@@ -10,7 +10,6 @@ import com.dpfht.thestore.domain.entity.DataEntity
 import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
 import com.dpfht.thestore.feature_list.RxImmediateSchedulerRule
-import com.dpfht.thestore.feature_list.view.ProductListViewModel
 import com.dpfht.thestore.framework.navigation.NavigationService
 import com.dpfht.thestore.framework.util.net.OnlineChecker
 import io.reactivex.Observable
