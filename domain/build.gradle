@@ -11,4 +11,8 @@ java {
 dependencies {
 
   implementation Deps.rxJava
+
+  testImplementation Deps.jUnit
+  testImplementation Deps.mockitoKotlin
+  testImplementation Deps.mockitoInline
 }
