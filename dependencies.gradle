@@ -32,7 +32,9 @@ ext {
       swipeRefreshLayout: '1.1.0',
       mockitoKotlin: '5.2.1',
       mockitoInline: '5.2.0',
-      coreTestingVersion: '2.1.0'
+      coreTestingVersion: '2.1.0',
+      robolectric: '4.11.1',
+      mockWebServer: '4.10.0'
   ]
 
   Deps = [
@@ -60,6 +62,8 @@ ext {
       swipeRefreshLayout: "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}",
       mockitoKotlin: "org.mockito.kotlin:mockito-kotlin:${Versions.mockitoKotlin}",
       mockitoInline: "org.mockito:mockito-inline:${Versions.mockitoInline}",
-      coreTesting: "androidx.arch.core:core-testing:${Versions.coreTestingVersion}"
+      coreTesting: "androidx.arch.core:core-testing:${Versions.coreTestingVersion}",
+      robolectric: "org.robolectric:robolectric:${Versions.robolectric}",
+      mockWebServer: "com.squareup.okhttp3:mockwebserver:${Versions.mockWebServer}"
   ]
 }
