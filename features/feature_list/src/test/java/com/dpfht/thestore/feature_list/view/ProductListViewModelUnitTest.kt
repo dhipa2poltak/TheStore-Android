@@ -2,6 +2,7 @@ package com.dpfht.thestore.feature_list.view
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import com.dpfht.thestore.data.model.remote.Data
 import com.dpfht.thestore.data.model.remote.DataResponse
 import com.dpfht.thestore.data.model.remote.Product
@@ -23,6 +24,7 @@ import org.mockito.ArgumentMatchers.anyInt
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.eq
+import org.mockito.kotlin.mock
 import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -41,8 +43,8 @@ class ProductListViewModelUnitTest {
   @Mock
   private lateinit var getProductsUseCase: GetProductsUseCase
 
-  private val listOfProduct = arrayListOf<ProductEntity>()
-  private val compositeDisposable = CompositeDisposable()
+  @Mock
+  private lateinit var compositeDisposable: CompositeDisposable
 
   @Mock
   private lateinit var onlineChecker: OnlineChecker
@@ -55,6 +57,8 @@ class ProductListViewModelUnitTest {
 
   @Mock
   private lateinit var showLoadingObserver: Observer<Boolean>
+
+  private val listOfProduct = arrayListOf<ProductEntity>()
 
   @Before
   fun setup() {
@@ -71,7 +75,7 @@ class ProductListViewModelUnitTest {
   @Test
   fun `fetch product successfully`() {
     val products = arrayListOf(ProductEntity(), ProductEntity(), ProductEntity())
-    val data = DataEntity(products = products)
+    val data = DataEntity(banner = "this is a banner", products = products)
     val dataResponse = DataDomain(data)
 
     whenever(onlineChecker.isOnline()).thenReturn(true)
@@ -79,6 +83,58 @@ class ProductListViewModelUnitTest {
 
     viewModel.isShowDialogLoading.observeForever(showLoadingObserver)
     viewModel.start()
+
+    verify(adapter, times(products.size)).notifyItemInserted(anyInt())
+    verify(showLoadingObserver).onChanged(eq(false))
+  }
+
+  @Test
+  fun `fetch product in offline state successfully`() {
+    val products = arrayListOf(ProductEntity(), ProductEntity(), ProductEntity())
+    val data = DataEntity(banner = "this is a banner", products = products)
+    val dataResponse = DataDomain(data)
+
+    whenever(onlineChecker.isOnline()).thenReturn(false)
+    whenever(getProductsUseCase.invoke()).thenReturn(Observable.just(dataResponse))
+
+    viewModel.isShowDialogLoading.observeForever(showLoadingObserver)
+    viewModel.start()
+
+    verify(adapter, times(products.size)).notifyItemInserted(anyInt())
+    verify(showLoadingObserver).onChanged(eq(false))
+  }
+
+  @Test
+  fun `navigate to Product Details screen`() {
+    val theFirstPosition = 0
+    val navController: NavController = mock()
+
+    val products = arrayListOf(ProductEntity(), ProductEntity(), ProductEntity())
+    listOfProduct.addAll(products)
+
+    viewModel.navigateToProductDetails(theFirstPosition, navController)
+
+    val product = products[theFirstPosition]
+    verify(navigationService).navigateToProductDetails(
+      product.productName,
+      product.price,
+      product.description,
+      product.images?.large ?: "",
+      navController
+    )
+  }
+
+  @Test
+  fun `refresh successfully`() {
+    val products = arrayListOf(ProductEntity(), ProductEntity(), ProductEntity())
+    val data = DataEntity(banner = "this is a banner", products = products)
+    val dataResponse = DataDomain(data)
+
+    whenever(onlineChecker.isOnline()).thenReturn(true)
+    whenever(getProductsUseCase.invoke()).thenReturn(Observable.just(dataResponse))
+
+    viewModel.isShowDialogLoading.observeForever(showLoadingObserver)
+    viewModel.refresh()
 
     verify(adapter, times(products.size)).notifyItemInserted(anyInt())
     verify(showLoadingObserver).onChanged(eq(false))
