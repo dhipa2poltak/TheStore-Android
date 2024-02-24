@@ -9,7 +9,9 @@ import com.dpfht.thestore.feature_list.databinding.RowProductBinding
 import com.dpfht.thestore.feature_list.adapter.ProductListAdapter.ProductListViewHolder
 import com.squareup.picasso.Picasso
 
-class ProductListAdapter(val products: ArrayList<ProductEntity>): RecyclerView.Adapter<ProductListViewHolder>() {
+class ProductListAdapter(
+  private val products: ArrayList<ProductEntity>
+): RecyclerView.Adapter<ProductListViewHolder>() {
 
   var onClickProductListener: OnClickProductListener? = null
 

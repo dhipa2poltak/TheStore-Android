@@ -33,9 +33,6 @@ class ProductListFragment : Fragment() {
   @Inject
   lateinit var viewModel: ProductListViewModel
 
-  @Inject
-  lateinit var adapter: ProductListAdapter
-
   private lateinit var ivBanner: ImageView
   private lateinit var swRefresh: SwipeRefreshLayout
   private lateinit var rvProduct: RecyclerView
@@ -98,9 +95,9 @@ class ProductListFragment : Fragment() {
     layoutManager.orientation = LinearLayoutManager.VERTICAL
 
     rvProduct.layoutManager = layoutManager
-    rvProduct.adapter = adapter
+    rvProduct.adapter = viewModel.adapter
 
-    adapter.onClickProductListener = object : ProductListAdapter.OnClickProductListener {
+    viewModel.adapter.onClickProductListener = object : ProductListAdapter.OnClickProductListener {
       override fun onClickProduct(position: Int) {
 
         if (isTablet) {
@@ -114,8 +111,6 @@ class ProductListFragment : Fragment() {
     }
 
     swRefresh.setOnRefreshListener {
-      adapter.products.clear()
-      adapter.notifyDataSetChanged()
       viewModel.refresh()
     }
 
@@ -143,21 +138,9 @@ class ProductListFragment : Fragment() {
       }
     }
 
-    viewModel.notifyItemInserted.observe(viewLifecycleOwner) { position ->
-      if (position > 0) {
-        adapter.notifyItemInserted(position)
-      }
-    }
-
     viewModel.toastMessage.observe(viewLifecycleOwner) { msg ->
       if (msg.isNotEmpty()) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
-      }
-    }
-
-    viewModel.errorMessage.observe(viewLifecycleOwner) { msg ->
-      if (msg.isNotEmpty()) {
-        showErrorMessage(msg)
       }
     }
   }
@@ -165,9 +148,5 @@ class ProductListFragment : Fragment() {
   private fun setToolbar() {
     (requireActivity() as AppCompatActivity).supportActionBar?.title = resources.getString(R.string.text_order_barang)
     (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
-  }
-
-  private fun showErrorMessage(message: String) {
-    viewModel.navigateToErrorMessageView(message)
   }
 }

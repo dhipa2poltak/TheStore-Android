@@ -46,19 +46,27 @@ class ProductListModule(private val productListFragment: ProductListFragment) {
 
   @Provides
   @FragmentScope
+  fun provideProductListAdapter(products: ArrayList<ProductEntity>): ProductListAdapter {
+    return ProductListAdapter(products)
+  }
+
+  @Provides
+  @FragmentScope
   fun provideProductListViewModel(
     getProductsUseCase: GetProductsUseCase,
     compositeDisposable: CompositeDisposable,
     products: ArrayList<ProductEntity>,
     onlineChecker: OnlineChecker,
+    adapter: ProductListAdapter,
     navigationService: NavigationService
   ): ProductListViewModel {
-    return ProductListViewModel(getProductsUseCase, compositeDisposable, products, onlineChecker, navigationService)
-  }
-
-  @Provides
-  @FragmentScope
-  fun provideProductListAdapter(products: ArrayList<ProductEntity>): ProductListAdapter {
-    return ProductListAdapter(products)
+    return ProductListViewModel(
+      getProductsUseCase,
+      compositeDisposable,
+      products,
+      onlineChecker,
+      adapter,
+      navigationService
+    )
   }
 }

@@ -13,6 +13,8 @@ class DataResponseTest {
 
   @Test
   fun `ensure converting DataResponse to domain is success`() {
+    val expectedCount = 15
+
     val str = FileReaderHelper.readFileAsString("data.json")
     assertTrue(str.isNotEmpty())
 
@@ -20,6 +22,6 @@ class DataResponseTest {
     val response = Gson().fromJson<DataResponse>(str, typeToken)
     val entity = response.toDomain()
 
-    assertTrue(entity.data?.products?.size == 15)
+    assertTrue(expectedCount == entity.data?.products?.size)
   }
 }

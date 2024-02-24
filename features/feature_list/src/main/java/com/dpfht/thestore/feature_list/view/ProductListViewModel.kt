@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import com.dpfht.thestore.domain.entity.DataDomain
 import com.dpfht.thestore.domain.entity.ProductEntity
 import com.dpfht.thestore.domain.usecase.GetProductsUseCase
+import com.dpfht.thestore.feature_list.adapter.ProductListAdapter
 import com.dpfht.thestore.framework.commons.CallbackWrapper
 import com.dpfht.thestore.framework.navigation.NavigationService
 import com.dpfht.thestore.framework.util.net.OnlineChecker
@@ -19,20 +20,15 @@ class ProductListViewModel constructor(
   private val compositeDisposable: CompositeDisposable,
   private val products: ArrayList<ProductEntity>,
   private val onlineChecker: OnlineChecker,
+  val adapter: ProductListAdapter,
   private val navigationService: NavigationService
 ): ViewModel() {
 
   private val mIsShowDialogLoading = MutableLiveData<Boolean>()
   val isShowDialogLoading: LiveData<Boolean> = mIsShowDialogLoading
 
-  private val mErrorMessage = MutableLiveData<String>()
-  val errorMessage: LiveData<String> = mErrorMessage
-
   private val mToastMessage = MutableLiveData<String>()
   val toastMessage: LiveData<String> = mToastMessage
-
-  private val _notifyItemInserted = MutableLiveData<Int>()
-  val notifyItemInserted: LiveData<Int> = _notifyItemInserted
 
   private val _banner = MutableLiveData<String>()
   val banner: LiveData<String> = _banner
@@ -76,20 +72,20 @@ class ProductListViewModel constructor(
 
   private fun onSuccess(banner: String, products: ArrayList<ProductEntity>) {
     if (banner.isNotEmpty()) {
-      _banner.value = banner
+      _banner.postValue(banner)
     }
 
     for (product in products) {
       this.products.add(product)
-      _notifyItemInserted.value = this.products.size - 1
+      adapter.notifyItemInserted(this.products.size - 1)
     }
 
-    mIsShowDialogLoading.value = false
+    mIsShowDialogLoading.postValue(false)
   }
 
   private fun onError(message: String) {
-    mErrorMessage.value = message
-    mIsShowDialogLoading.value = false
+    mIsShowDialogLoading.postValue(false)
+    navigateToErrorMessageView(message)
   }
 
   fun navigateToProductDetails(position: Int, navController: NavController?) {
@@ -104,12 +100,13 @@ class ProductListViewModel constructor(
     )
   }
 
-  fun navigateToErrorMessageView(message: String) {
+  private fun navigateToErrorMessageView(message: String) {
     navigationService.navigateToErrorMessageView(message)
   }
 
   fun refresh() {
     products.clear()
+    adapter.notifyDataSetChanged()
     start()
   }
 
