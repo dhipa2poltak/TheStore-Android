@@ -5,10 +5,10 @@ plugins {
 
 android {
   namespace 'com.dpfht.thestore.navigation'
-  compileSdk 34
+  compileSdk ConfigData.compileSdkVersion
 
   defaultConfig {
-    minSdk 21
+    minSdk ConfigData.minSdkVersion
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     consumerProguardFiles "consumer-rules.pro"
@@ -21,11 +21,11 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility JavaVersion.VERSION_17
-    targetCompatibility JavaVersion.VERSION_17
+    sourceCompatibility ConfigData.sourceCompatibilityVersion
+    targetCompatibility ConfigData.targetCompatibilityVersion
   }
   kotlinOptions {
-    jvmTarget = '17'
+    jvmTarget = ConfigData.jvmTargetVersion
   }
 }
 
