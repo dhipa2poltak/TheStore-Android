@@ -48,8 +48,7 @@ class GetProductsUseCaseTest {
     val expected = dataResult
     var actual: DataDomain? = null
 
-    val disposable = appRepository
-      .getProducts()
+    val disposable = getProductUseCase()
       .subscribe {
         actual = it
       }
@@ -71,8 +70,7 @@ class GetProductsUseCaseTest {
 
     var actual = ""
 
-    val disposable = appRepository
-      .getProducts()
+    val disposable = getProductUseCase()
       .subscribe({
 
       }, {
