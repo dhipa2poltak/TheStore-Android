@@ -10,7 +10,7 @@ class NavigationServiceImpl(private val navController: NavController): Navigatio
 
   override fun navigateToProductList() {
     val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
-    navGraph.setStartDestination(com.dpfht.thestore.framework.R.id.list_nav_graph)
+    navGraph.setStartDestination(R.id.list_nav_graph)
 
     navController.graph = navGraph
   }

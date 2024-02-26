@@ -7,13 +7,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
-import com.dpfht.thestore.framework.R as FrameworkR
 import com.dpfht.thestore.databinding.ActivityMainBinding
 import com.dpfht.thestore.framework.di.NavigationComponent
 import com.dpfht.thestore.framework.di.DaggerNavigationComponent
 import com.dpfht.thestore.framework.di.module.NavigationModule
 import com.dpfht.thestore.framework.di.provider.NavigationComponentProvider
 import com.dpfht.thestore.navigation.NavigationServiceImpl
+import com.dpfht.thestore.navigation.R as navigationR
 
 class MainActivity : AppCompatActivity(), NavigationComponentProvider {
 
@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationComponentProvider {
     setContentView(binding.root)
 
     val appBarConfiguration = AppBarConfiguration(
-      setOf(FrameworkR.id.productListFragment)
+      setOf(navigationR.id.productListFragment)
     )
 
     val navHostFragment =

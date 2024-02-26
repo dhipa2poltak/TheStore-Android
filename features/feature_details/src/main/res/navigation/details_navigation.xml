@@ -2,11 +2,11 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@id/details_nav_graph"
-    app:startDestination="@id/productDetailsFragment">
+    android:id="@+id/details_nav_graph"
+    app:startDestination="@+id/productDetailsFragment">
 
   <fragment
-      android:id="@id/productDetailsFragment"
+      android:id="@+id/productDetailsFragment"
       android:name="com.dpfht.thestore.feature_details.view.ProductDetailsFragment"
       android:label="details"
       tools:layout="@layout/fragment_product_details">
