@@ -13,7 +13,7 @@ import com.dpfht.thestore.domain.usecase.GetProductsUseCase
 import com.dpfht.thestore.feature_list.RxImmediateSchedulerRule
 import com.dpfht.thestore.feature_list.adapter.ProductListAdapter
 import com.dpfht.thestore.framework.navigation.NavigationService
-import com.dpfht.thestore.framework.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.OnlineChecker
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import org.junit.Before

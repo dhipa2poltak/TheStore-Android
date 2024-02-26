@@ -10,7 +10,7 @@ import com.dpfht.thestore.domain.usecase.GetProductsUseCase
 import com.dpfht.thestore.feature_list.adapter.ProductListAdapter
 import com.dpfht.thestore.framework.commons.CallbackWrapper
 import com.dpfht.thestore.framework.navigation.NavigationService
-import com.dpfht.thestore.framework.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.OnlineChecker
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

@@ -12,8 +12,8 @@ import com.dpfht.thestore.framework.data.datasource.remote.RemoteDataSourceImpl
 import com.dpfht.thestore.framework.di.ApplicationContext
 import com.dpfht.thestore.framework.di.LocalDataSourceQ
 import com.dpfht.thestore.framework.di.RemoteDataSourceQ
-import com.dpfht.thestore.framework.util.net.DefaultOnlineChecker
-import com.dpfht.thestore.framework.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.DefaultOnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.OnlineChecker
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -1,7 +1,7 @@
 package com.dpfht.thestore.framework.data.datasource.local
 
 import com.dpfht.thestore.data.datasource.NetworkStateDataSource
-import com.dpfht.thestore.framework.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.OnlineChecker
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before

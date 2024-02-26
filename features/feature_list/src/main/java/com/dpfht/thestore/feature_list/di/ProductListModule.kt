@@ -11,7 +11,7 @@ import com.dpfht.thestore.feature_list.view.ProductListViewModel
 import com.dpfht.thestore.framework.di.ActivityContext
 import com.dpfht.thestore.framework.di.FragmentScope
 import com.dpfht.thestore.framework.navigation.NavigationService
-import com.dpfht.thestore.framework.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.OnlineChecker
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable

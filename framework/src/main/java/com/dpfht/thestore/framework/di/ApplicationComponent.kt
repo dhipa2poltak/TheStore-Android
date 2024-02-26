@@ -3,7 +3,7 @@ package com.dpfht.thestore.framework.di
 import com.dpfht.thestore.domain.repository.AppRepository
 import com.dpfht.thestore.framework.di.module.ApplicationModule
 import com.dpfht.thestore.framework.di.module.NetworkModule
-import com.dpfht.thestore.framework.util.net.OnlineChecker
+import com.dpfht.thestore.framework.data.datasource.local.onlinechecker.OnlineChecker
 import dagger.Component
 import javax.inject.Singleton
 
