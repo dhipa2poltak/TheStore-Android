@@ -17,6 +17,10 @@ class AppRepositoryImpl(
     return if (onlineChecker.isOnline())
       remoteDataSource.getProducts()
         .map { it.toDomain() }
+        .onErrorResumeNext { _: Throwable ->
+          localDataSource.getProducts()
+            .map { it.toDomain() }
+        }
     else
       localDataSource.getProducts()
         .map { it.toDomain() }
